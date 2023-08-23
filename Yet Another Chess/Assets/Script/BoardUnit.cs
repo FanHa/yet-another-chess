@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class BoardUnit : MonoBehaviour
 {
-    public Vector2 XYCoordinate;
-    public Vector3 XYZCoordinate;
+    public Vector2Int XYCoordinate;
+    public Vector3Int XYZCoordinate;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SetMovable(bool movable)
+    {
+        var renderer = GetComponent<Renderer>();
+
+        if (movable) {
+            renderer.material.color = Color.green; 
+        } else
+        {
+            renderer.material.color = Color.white;
+        }
     }
 }

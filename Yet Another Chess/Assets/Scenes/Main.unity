@@ -3772,10 +3772,10 @@ RectTransform:
   m_Father: {fileID: 2077601439}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -269.32446, y: 118.99335}
-  m_SizeDelta: {x: 218.4982, y: 143.7697}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 120.67554, y: -78.00665}
+  m_SizeDelta: {x: 218.4982, y: 143.76971}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &640151883
 MonoBehaviour:
@@ -3790,8 +3790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: {fileID: 1884301488}
-  Content: {fileID: 0}
-  ContentTransform: {fileID: 0}
+  Content: {fileID: 719813614}
 --- !u!114 &640151884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4534,8 +4533,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9499,6 +9498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameCamera: {fileID: 963194227}
+  TokenInfoPanel: {fileID: 640151881}
 --- !u!4 &1470812795
 Transform:
   m_ObjectHideFlags: 0

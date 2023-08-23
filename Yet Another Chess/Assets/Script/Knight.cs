@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Knight : MonoBehaviour
 {
-    public Vector2 BoardPosition = Vector2.zero;
+    public Vector2Int BoardPosition = Vector2Int.zero;
     public readonly string TokenName = "Cavalry";
     public readonly string Info = "High speed, medium attack, medium defense";
     public int Mobility = 2;
@@ -21,9 +21,11 @@ public class Knight : MonoBehaviour
         
     }
 
-    public void MoveTo(Vector2 targetCoordinate)
+    public void MoveTo(Vector2Int targetCoordinate)
     {
-
+        BoardPosition = targetCoordinate;
+        var realPosition = BoardManager.GetRealPositionByCoordinate(targetCoordinate);
+        transform.position = realPosition;
     }
 
     public List<Vector2> CanMoveToList()

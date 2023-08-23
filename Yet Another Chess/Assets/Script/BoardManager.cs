@@ -18,7 +18,7 @@ public class BoardManager : MonoBehaviour
         StartCoroutine(DrawChessBoard());
     }
 
-    public Vector3 GetRealPositionByCoordinate(Vector2 coordinate)
+    public static Vector3 GetRealPositionByCoordinate(Vector2 coordinate)
     {
         return new Vector3(coordinate.x * unitWidth, 3, coordinate.y * unitWidth + yOffset * coordinate.x);
     }
@@ -33,6 +33,7 @@ public class BoardManager : MonoBehaviour
 
                 float offset = yOffset * x;
                 GameObject unit = Instantiate(chessUnit, new Vector3(x * unitWidth, 0, y * unitWidth + offset), chessUnit.transform.rotation, chessBoard.transform);
+                unit.tag = "Board Unit";
                 unit.name = "Board Unit " + x + " " + y;
                 BoardUnit sriptComponent = unit.GetComponent<BoardUnit>();
                 sriptComponent.XYCoordinate = new Vector2Int(x, y);
@@ -40,7 +41,8 @@ public class BoardManager : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
         }
-        Instantiate(knightToken, GetRealPositionByCoordinate(new Vector2(1, 2)), knightToken.transform.rotation);
+        var token = Instantiate(knightToken, GetRealPositionByCoordinate(new Vector2(1, 2)), knightToken.transform.rotation);
+        token.GetComponent<Knight>().BoardPosition = new Vector2Int(1,2);
     }
     // Update is called once per frame
     void Update()
