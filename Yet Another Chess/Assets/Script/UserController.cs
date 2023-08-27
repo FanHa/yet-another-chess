@@ -10,15 +10,25 @@ public class UserController : MonoBehaviour
     public Camera GameCamera;
     public GameObject TokenInfoPanel;
     public GameObject ActionUI;
+    public GameObject BoardManager;
 
-    private Knight currentToken;
+    private Knight _currentToken;
     private float cameraMoveSpeed = 80f;
 
     private List<BoardUnit> _movableUnits;
-    // Start is called before the first frame update
-    void Start()
+    public ActionPhase Phase;
+
+    public enum ActionPhase
     {
-        // ActionUI.SetActive(false);
+        Init,
+        Moved,
+        Operated,
+    }
+    // Start is called before the first frame update
+    void Awake()
+    {
+        BoardManager.GetComponent<BoardManager>().DrawChessBoard();
+        SetCurrentControlToken("User Knight");
     }
 
     // Update is called once per frame
@@ -29,6 +39,7 @@ public class UserController : MonoBehaviour
 
         GameCamera.transform.position = GameCamera.transform.position + GameCamera.transform.forward * cameraMoveSpeed * Time.deltaTime * vercicalInput;
         GameCamera.transform.position = GameCamera.transform.position + GameCamera.transform.right * cameraMoveSpeed * Time.deltaTime * horizontalInput;
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -41,30 +52,22 @@ public class UserController : MonoBehaviour
                     if (hit.collider.CompareTag("Token"))
                     {
                         var token = hit.collider.GetComponentInParent<Knight>();
-                        currentToken = token;
-                        TokenInfoPanel.GetComponent<TokenInfo>().SetName(token.TokenName);
-                        TokenInfoPanel.GetComponent<TokenInfo>().SetInfo(token.Info);
-                        _movableUnits = GetMovableUnits(token.BoardPosition, token.Mobility);
-                        for (int i=0; i<_movableUnits.Count; i++)
-                        {
-                            _movableUnits[i].SetMovable(true);
-                        }
+                        
                         
                     } else if (hit.collider.CompareTag("Board Unit"))
                     {
-                        if (currentToken != null)
+                        if (_currentToken != null && Phase == ActionPhase.Init)
                         {
                             var unit = hit.collider.GetComponentInParent<BoardUnit>();
                             if (unit.GetMovable())
                             {
-                                currentToken.MoveTo(unit.XYCoordinate);
+                                _currentToken.MoveTo(unit.XYCoordinate);
                                 for (int i = 0; i < _movableUnits.Count; i++)
                                 {
                                     _movableUnits[i].SetMovable(false);
                                 }
                                 ActionUI.SetActive(true) ;
-                                currentToken = null;
-
+                                Phase = ActionPhase.Moved;
                             }
                             else
                             {
@@ -80,6 +83,21 @@ public class UserController : MonoBehaviour
 
 
             }
+        }
+    }
+
+    void SetCurrentControlToken(string name)
+    {
+        var ob = GameObject.Find(name);
+        Debug.Log(ob);
+        _currentToken = ob.GetComponent<Knight>();
+        TokenInfoPanel.GetComponent<TokenInfo>().SetName(_currentToken.TokenName);
+        TokenInfoPanel.GetComponent<TokenInfo>().SetInfo(_currentToken.Info);
+        Phase = ActionPhase.Init;
+        _movableUnits = GetMovableUnits(_currentToken.BoardPosition, _currentToken.Mobility);
+        for (int i = 0; i < _movableUnits.Count; i++)
+        {
+            _movableUnits[i].SetMovable(true);
         }
     }
 

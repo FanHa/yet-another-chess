@@ -8,13 +8,13 @@ public class Knight : MonoBehaviour
     public Vector2Int BoardPosition = Vector2Int.zero;
     public readonly string TokenName = "Cavalry";
     public readonly string Info = "High speed, medium attack, medium defense";
-    public int Mobility = 2;
+    public int Mobility = 3;
     public int Team;
 
+    
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame

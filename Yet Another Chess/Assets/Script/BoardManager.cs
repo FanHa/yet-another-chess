@@ -15,7 +15,7 @@ public class BoardManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DrawChessBoard());
+ 
     }
 
     public static Vector3 GetRealPositionByCoordinate(Vector2 coordinate)
@@ -23,7 +23,7 @@ public class BoardManager : MonoBehaviour
         return new Vector3(coordinate.x * unitWidth, 3, coordinate.y * unitWidth + yOffset * coordinate.x);
     }
 
-    IEnumerator DrawChessBoard()
+    public void DrawChessBoard()
     {
         GameObject chessBoard = GameObject.Find("Chess Board");
         for (int x = 0; x <= xNum; x++)
@@ -38,10 +38,10 @@ public class BoardManager : MonoBehaviour
                 BoardUnit sriptComponent = unit.GetComponent<BoardUnit>();
                 sriptComponent.XYCoordinate = new Vector2Int(x, y);
                 sriptComponent.XYZCoordinate = new Vector3Int(x, y, 0 - x - y);
-                yield return new WaitForSeconds(0.01f);
             }
         }
         var controlToken = Instantiate(CavalryPrefab, GetRealPositionByCoordinate(new Vector2(1, 2)), CavalryPrefab.transform.rotation);
+        controlToken.name = "User Knight";
         controlToken.GetComponent<Knight>().BoardPosition = new Vector2Int(1,2);
         controlToken.GetComponent<Knight>().Team = 1;
 
@@ -54,5 +54,10 @@ public class BoardManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void SetCurrentToken()
+    {
+
     }
 }
