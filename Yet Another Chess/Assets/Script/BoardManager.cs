@@ -6,7 +6,7 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     public GameObject chessUnit;
-    public GameObject knightToken;
+    public GameObject CavalryPrefab;
 
     private static int unitWidth = 10;
     private static int yOffset = unitWidth / 2;
@@ -41,8 +41,14 @@ public class BoardManager : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
         }
-        var token = Instantiate(knightToken, GetRealPositionByCoordinate(new Vector2(1, 2)), knightToken.transform.rotation);
-        token.GetComponent<Knight>().BoardPosition = new Vector2Int(1,2);
+        var controlToken = Instantiate(CavalryPrefab, GetRealPositionByCoordinate(new Vector2(1, 2)), CavalryPrefab.transform.rotation);
+        controlToken.GetComponent<Knight>().BoardPosition = new Vector2Int(1,2);
+        controlToken.GetComponent<Knight>().Team = 1;
+
+
+        var enemyToken = Instantiate(CavalryPrefab, GetRealPositionByCoordinate(new Vector2(3, 4)), CavalryPrefab.transform.rotation);
+        enemyToken.GetComponent<Knight>().BoardPosition = new Vector2Int(3, 4);
+        enemyToken.GetComponent <Knight>().Team = 2;
     }
     // Update is called once per frame
     void Update()

@@ -9,13 +9,16 @@ public class UserController : MonoBehaviour
 {
     public Camera GameCamera;
     public GameObject TokenInfoPanel;
+    public GameObject ActionUI;
 
     private Knight currentToken;
     private float cameraMoveSpeed = 80f;
+
+    private List<BoardUnit> _movableUnits;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(TokenInfoPanel.activeSelf);
+        // ActionUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -41,23 +44,35 @@ public class UserController : MonoBehaviour
                         currentToken = token;
                         TokenInfoPanel.GetComponent<TokenInfo>().SetName(token.TokenName);
                         TokenInfoPanel.GetComponent<TokenInfo>().SetInfo(token.Info);
-                        TokenInfoPanel.SetActive(true);
-                        ShowBoardUnitCanMoveTo(token.BoardPosition, token.Mobility);
+                        _movableUnits = GetMovableUnits(token.BoardPosition, token.Mobility);
+                        for (int i=0; i<_movableUnits.Count; i++)
+                        {
+                            _movableUnits[i].SetMovable(true);
+                        }
                         
                     } else if (hit.collider.CompareTag("Board Unit"))
                     {
                         if (currentToken != null)
                         {
                             var unit = hit.collider.GetComponentInParent<BoardUnit>();
-                            // todo movable
-                            currentToken.MoveTo(unit.XYCoordinate);
-                            currentToken = null;
+                            if (unit.GetMovable())
+                            {
+                                currentToken.MoveTo(unit.XYCoordinate);
+                                for (int i = 0; i < _movableUnits.Count; i++)
+                                {
+                                    _movableUnits[i].SetMovable(false);
+                                }
+                                ActionUI.SetActive(true) ;
+                                currentToken = null;
+
+                            }
+                            else
+                            {
+                                Debug.Log("Can not move to this unit");
+                            }
+                            
                         }
                         
-
-                    } else
-                    {
-                        TokenInfoPanel.SetActive(false);
 
                     }
                 } 
@@ -83,6 +98,24 @@ public class UserController : MonoBehaviour
             }
 
         }
+    }
+
+    List<BoardUnit> GetMovableUnits(Vector2Int position, int mobility)
+    {
+        var list = new List<BoardUnit> { };
+        var units = GameObject.FindGameObjectsWithTag("Board Unit");
+        for (int i = 0; i < units.Length; i++)
+        {
+            var boardUnit = units[i].GetComponent<BoardUnit>();
+            var distance = GetDistance(boardUnit.XYZCoordinate, new Vector3Int(position.x, position.y, 0 - position.x - position.y));
+            if (distance <= mobility)
+            {
+                list.Add(boardUnit);
+
+            }
+
+        }
+        return list;
     }
 
     void HideBoardUnitCanMoveTo(Vector2Int position, int mobility)

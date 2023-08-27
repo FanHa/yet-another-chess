@@ -9,6 +9,8 @@ public class Knight : MonoBehaviour
     public readonly string TokenName = "Cavalry";
     public readonly string Info = "High speed, medium attack, medium defense";
     public int Mobility = 2;
+    public int Team;
+
     // Start is called before the first frame update
     void Start()
     {
