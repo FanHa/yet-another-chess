@@ -125,8 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2019402d3e7ff5a4abf0999b6953d32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardManager: {fileID: 0}
   BoardPosition: {x: 0, y: 0}
-  Mobility: 2
+  Mobility: 0
+  Team: 0
+  HP: 0
 --- !u!222 &7999582780860297774
 CanvasRenderer:
   m_ObjectHideFlags: 0

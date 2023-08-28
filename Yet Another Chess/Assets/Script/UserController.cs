@@ -15,13 +15,16 @@ public class UserController : MonoBehaviour
     private Knight _currentToken;
     private float cameraMoveSpeed = 80f;
 
-    private List<BoardUnit> _movableUnits;
+    [SerializeField] private List<BoardUnit> _movableUnits;
+    [SerializeField] private List<Knight> _attackableTokens; 
     public ActionPhase Phase;
 
     public enum ActionPhase
     {
         Init,
+        Moving,
         Moved,
+        Attacking,
         Operated,
     }
     // Start is called before the first frame update
@@ -40,7 +43,6 @@ public class UserController : MonoBehaviour
         GameCamera.transform.position = GameCamera.transform.position + GameCamera.transform.forward * cameraMoveSpeed * Time.deltaTime * vercicalInput;
         GameCamera.transform.position = GameCamera.transform.position + GameCamera.transform.right * cameraMoveSpeed * Time.deltaTime * horizontalInput;
 
-
         if (Input.GetMouseButtonDown(0))
         {
             var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
@@ -51,22 +53,25 @@ public class UserController : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("Token"))
                     {
-                        var token = hit.collider.GetComponentInParent<Knight>();
+                        if (Phase == ActionPhase.Attacking)
+                        {
+                            var token = hit.collider.GetComponentInParent<Knight>();
+                            if (_currentToken.CanAttackTo(token))
+                            {
+                                token.AddHP(-10);
+                            }
+                        }
                         
                         
                     } else if (hit.collider.CompareTag("Board Unit"))
                     {
-                        if (_currentToken != null && Phase == ActionPhase.Init)
+                        if (_currentToken != null && Phase == ActionPhase.Moving)
                         {
                             var unit = hit.collider.GetComponentInParent<BoardUnit>();
                             if (unit.GetMovable())
                             {
                                 _currentToken.MoveTo(unit.XYCoordinate);
-                                for (int i = 0; i < _movableUnits.Count; i++)
-                                {
-                                    _movableUnits[i].SetMovable(false);
-                                }
-                                ActionUI.SetActive(true) ;
+                                HideBoardUnitCanMoveTo();
                                 Phase = ActionPhase.Moved;
                             }
                             else
@@ -89,69 +94,71 @@ public class UserController : MonoBehaviour
     void SetCurrentControlToken(string name)
     {
         var ob = GameObject.Find(name);
-        Debug.Log(ob);
         _currentToken = ob.GetComponent<Knight>();
         TokenInfoPanel.GetComponent<TokenInfo>().SetName(_currentToken.TokenName);
         TokenInfoPanel.GetComponent<TokenInfo>().SetInfo(_currentToken.Info);
         Phase = ActionPhase.Init;
-        _movableUnits = GetMovableUnits(_currentToken.BoardPosition, _currentToken.Mobility);
+
+    }
+
+    void ShowAttackableEnemy()
+    {
+        for (int i = 0; i< _attackableTokens.Count ;i++)
+        {
+            _attackableTokens[i].SetAttackTargetable(true);
+        }
+    }
+    void ShowBoardUnitCanMoveTo()
+    {
         for (int i = 0; i < _movableUnits.Count; i++)
         {
-            _movableUnits[i].SetMovable(true);
+            var boardUnit = _movableUnits[i].GetComponent<BoardUnit>();
+            boardUnit.SetMovable(true);
         }
     }
 
-    void ShowBoardUnitCanMoveTo(Vector2Int position, int mobility)
+    void HideBoardUnitCanMoveTo()
     {
- 
+        for (int i = 0; i < _movableUnits.Count; i++)
+        {
+            var boardUnit = _movableUnits[i].GetComponent<BoardUnit>();
+            boardUnit.SetMovable(false);
+        }
+    }
+
+    List<BoardUnit> GetMovableUnits()
+    {
+        var list = new List<BoardUnit>();
         var units = GameObject.FindGameObjectsWithTag("Board Unit");
         for (int i = 0; i < units.Length; i++)
         {
             var boardUnit = units[i].GetComponent<BoardUnit>();
-            var distance = GetDistance(boardUnit.XYZCoordinate, new Vector3Int(position.x, position.y, 0 - position.x - position.y));
-            if (distance <= mobility)
-            {
-                boardUnit.SetMovable(true);
-
-            }
-
-        }
-    }
-
-    List<BoardUnit> GetMovableUnits(Vector2Int position, int mobility)
-    {
-        var list = new List<BoardUnit> { };
-        var units = GameObject.FindGameObjectsWithTag("Board Unit");
-        for (int i = 0; i < units.Length; i++)
-        {
-            var boardUnit = units[i].GetComponent<BoardUnit>();
-            var distance = GetDistance(boardUnit.XYZCoordinate, new Vector3Int(position.x, position.y, 0 - position.x - position.y));
-            if (distance <= mobility)
+            if (_currentToken.CanMoveTo(boardUnit))
             {
                 list.Add(boardUnit);
-
             }
+            
 
         }
         return list;
     }
 
-    void HideBoardUnitCanMoveTo(Vector2Int position, int mobility)
+    List<Knight> GetAttackableTokens()
     {
-
-        var units = GameObject.FindGameObjectsWithTag("Board Unit");
-        for (int i = 0; i < units.Length; i++)
+        var list = new List<Knight>();
+        var tokens = GameObject.FindGameObjectsWithTag("Token");
+        for (int i = 0; i<tokens.Length; i++)
         {
-            var boardUnit = units[i].GetComponent<BoardUnit>();
-            var distance = GetDistance(boardUnit.XYZCoordinate, new Vector3Int(position.x, position.y, 0 - position.x - position.y));
-            if (distance <= mobility)
+            var token = tokens[i].GetComponent<Knight>();
+            if (_currentToken.CanAttackTo(token))
             {
-                boardUnit.SetMovable(false);
-
+                list.Add(token);
             }
-
         }
+        return list;
     }
+
+   
 
     int GetDistance(Vector3Int qrsA, Vector3Int qrsB)
     {
@@ -160,5 +167,24 @@ public class UserController : MonoBehaviour
         int dS = Mathf.Abs(qrsB.z - qrsA.z);
 
         return Mathf.Max(dQ, dR, dS);
+    }
+
+    public void SetPhase(string phase)
+    {
+        if (phase == "Attacking")
+        {
+            Phase = ActionPhase.Attacking;
+            _attackableTokens = GetAttackableTokens();
+            ShowAttackableEnemy();
+            return;
+        }
+
+        if (phase == "Moving")
+        {
+            Phase = ActionPhase.Moving;
+            _movableUnits = GetMovableUnits();
+            ShowBoardUnitCanMoveTo();
+            return;
+        }
     }
 }

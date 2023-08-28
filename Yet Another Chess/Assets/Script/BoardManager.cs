@@ -13,9 +13,10 @@ public class BoardManager : MonoBehaviour
     private static int xNum = 8;
     private static int yNum = 12;
 
+    private static Dictionary<string, GameObject> s_units = new Dictionary<string, GameObject>();
+
     void Start()
     {
- 
     }
 
     public static Vector3 GetRealPositionByCoordinate(Vector2 coordinate)
@@ -35,6 +36,7 @@ public class BoardManager : MonoBehaviour
                 GameObject unit = Instantiate(chessUnit, new Vector3(x * unitWidth, 0, y * unitWidth + offset), chessUnit.transform.rotation, chessBoard.transform);
                 unit.tag = "Board Unit";
                 unit.name = "Board Unit " + x + " " + y;
+                s_units.Add(unit.name, unit);
                 BoardUnit sriptComponent = unit.GetComponent<BoardUnit>();
                 sriptComponent.XYCoordinate = new Vector2Int(x, y);
                 sriptComponent.XYZCoordinate = new Vector3Int(x, y, 0 - x - y);
@@ -55,6 +57,7 @@ public class BoardManager : MonoBehaviour
     {
         
     }
+
 
     void SetCurrentToken()
     {
