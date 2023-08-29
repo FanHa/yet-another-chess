@@ -394,11 +394,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115333180}
   m_CullTransparentMesh: 1
---- !u!1 &116721132 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 784133886136189555, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
-  m_PrefabInstance: {fileID: 8672259578494662777}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &263720626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chessUnit: {fileID: 4487861396437362277, guid: e2a17822bbb73644da49e9e539a6c746, type: 3}
-  CavalryPrefab: {fileID: 116721132}
+  CavalryPrefab: {fileID: 784133886136189555, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
 --- !u!4 &2142228889
 Transform:
   m_ObjectHideFlags: 0
@@ -1929,15 +1924,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 641711168383205042, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 354.3884
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 641711168383205042, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.3488
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 641711168383205042, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 294.38553
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 641711168383205042, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1971,11 +1966,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Token
       objectReference: {fileID: 0}
-    - target: {fileID: 5389409576031700587, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
+    - target: {fileID: 4523821790611882900, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5389409576031700587, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
+    - target: {fileID: 4523821790611882900, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
