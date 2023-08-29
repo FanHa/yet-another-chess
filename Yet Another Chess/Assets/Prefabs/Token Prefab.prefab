@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7448205714465071153}
   - component: {fileID: 4514073480636069392}
   - component: {fileID: 8157214909279693105}
-  - component: {fileID: 7715797045591428489}
   m_Layer: 0
   m_Name: Token Prefab
   m_TagString: Token
@@ -124,19 +123,6 @@ MonoBehaviour:
   BoardPosition: {x: 0, y: 0}
   _mobility: 3
   Team: 0
-  HP: 0
---- !u!114 &7715797045591428489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784133886136189555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b8430a22692e74cb0a5eb75d3f7765, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   CurrentHealth: 100
   MaxHealth: 100
   HealthBarUI: {fileID: 2674714938639530543}

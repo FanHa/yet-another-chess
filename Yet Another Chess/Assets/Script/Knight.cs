@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class Knight : MonoBehaviour
 {
@@ -12,13 +11,18 @@ public class Knight : MonoBehaviour
     public readonly string Info = "High speed, medium attack, medium defense";
     [SerializeField] private int _mobility = 3;
     public int Team;
-    public int HP;
+    public float CurrentHealth;
+    public float MaxHealth;
 
-    
+    public GameObject HealthBarUI;
+    public Slider Slider;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        HP = 100;
+        CurrentHealth = MaxHealth;
+        Slider.value = CalculateHealth();
     }
 
     // Update is called once per frame
@@ -59,10 +63,12 @@ public class Knight : MonoBehaviour
     }
     public void AddHP(int hp)
     {
-        HP = HP + hp;
-        if (HP <= 0)
+        CurrentHealth += hp;
+        Slider.value = CalculateHealth();
+
+        if (CurrentHealth <= 0)
         {
-            // todo 
+            Destroy(gameObject);
         }
     }
     public void SetAttackTargetable(bool attackable)
@@ -77,6 +83,11 @@ public class Knight : MonoBehaviour
         int dS = Mathf.Abs(qrsB.z - qrsA.z);
 
         return Mathf.Max(dQ, dR, dS);
+    }
+
+    float CalculateHealth()
+    {
+        return CurrentHealth / MaxHealth;
     }
 
 
