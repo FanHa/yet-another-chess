@@ -10,7 +10,6 @@ public class UserController : MonoBehaviour
     public Camera GameCamera;
     public GameObject TokenInfoPanel;
     public GameObject ActionUI;
-    public GameObject BoardManager;
 
     private Knight _currentToken;
     private float cameraMoveSpeed = 80f;
@@ -25,13 +24,11 @@ public class UserController : MonoBehaviour
         Moving,
         Moved,
         Attacking,
-        Operated,
+        EndTurn,
     }
     // Start is called before the first frame update
     void Awake()
     {
-        BoardManager.GetComponent<BoardManager>().DrawChessBoard();
-        SetCurrentControlToken("User Knight");
     }
 
     // Update is called once per frame
@@ -58,7 +55,7 @@ public class UserController : MonoBehaviour
                             var token = hit.collider.GetComponentInParent<Knight>();
                             if (_currentToken.CanAttackTo(token))
                             {
-                                token.AddHP(-10);
+                                token.AddHP(-25);
                             }
                         }
                         
@@ -91,12 +88,13 @@ public class UserController : MonoBehaviour
         }
     }
 
-    void SetCurrentControlToken(string name)
+    public void SetCurrentControlToken(string name)
     {
         var ob = GameObject.Find(name);
         _currentToken = ob.GetComponent<Knight>();
-        TokenInfoPanel.GetComponent<TokenInfo>().SetName(_currentToken.TokenName);
+        TokenInfoPanel.GetComponent<TokenInfo>().SetName(_currentToken.Class);
         TokenInfoPanel.GetComponent<TokenInfo>().SetInfo(_currentToken.Info);
+        _currentToken.ChoosonRing.SetActive(true);
         Phase = ActionPhase.Init;
 
     }
@@ -158,16 +156,6 @@ public class UserController : MonoBehaviour
         return list;
     }
 
-   
-
-    int GetDistance(Vector3Int qrsA, Vector3Int qrsB)
-    {
-        int dQ = Mathf.Abs(qrsB.x - qrsA.x);
-        int dR = Mathf.Abs(qrsB.y - qrsA.y);
-        int dS = Mathf.Abs(qrsB.z - qrsA.z);
-
-        return Mathf.Max(dQ, dR, dS);
-    }
 
     public void SetPhase(string phase)
     {
@@ -184,6 +172,13 @@ public class UserController : MonoBehaviour
             Phase = ActionPhase.Moving;
             _movableUnits = GetMovableUnits();
             ShowBoardUnitCanMoveTo();
+            return;
+        }
+        if (phase == "EndTurn")
+        {
+            Phase = ActionPhase.EndTurn;
+            _currentToken.ChoosonRing.SetActive(false);
+            GameController.TurnEnd(_currentToken.Name);
             return;
         }
     }

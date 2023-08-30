@@ -1,16 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Knight : MonoBehaviour
 {
-    public BoardManager boardManager;
     public Vector2Int BoardPosition = Vector2Int.zero;
-    public readonly string TokenName = "Cavalry";
-    public readonly string Info = "High speed, medium attack, medium defense";
-    [SerializeField] private int _mobility = 3;
-    public int Team;
+    public readonly string Class = "Cavalry";
+    public readonly string Info = " High speed\n Medium attack\n Medium defense";
+    public TextMeshProUGUI TokenNameText;
+    public GameObject ChoosonRing;
+    [SerializeField] private int _mobility = 5;
+    private int _team;
+    public int Team
+    {
+        get => _team;
+        set
+        {
+            _team = value;
+            Renderer renderer = GetComponent<Renderer>();
+            if ( value == 1) 
+            {
+                renderer.material.color = Color.blue;
+            } else
+            {
+                renderer.material.color = Color.red;
+            }
+            
+        }
+    }
+
+    public string Name
+    {
+        get => name;
+        set
+        {
+            name = value;
+            TokenNameText.text = name;
+        }
+    }
     public float CurrentHealth;
     public float MaxHealth;
 

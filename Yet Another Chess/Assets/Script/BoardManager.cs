@@ -42,15 +42,6 @@ public class BoardManager : MonoBehaviour
                 sriptComponent.XYZCoordinate = new Vector3Int(x, y, 0 - x - y);
             }
         }
-        var controlToken = Instantiate(CavalryPrefab, GetRealPositionByCoordinate(new Vector2(1, 2)), CavalryPrefab.transform.rotation);
-        controlToken.name = "User Knight";
-        controlToken.GetComponent<Knight>().BoardPosition = new Vector2Int(1,2);
-        controlToken.GetComponent<Knight>().Team = 1;
-
-
-        var enemyToken = Instantiate(CavalryPrefab, GetRealPositionByCoordinate(new Vector2(3, 4)), CavalryPrefab.transform.rotation);
-        enemyToken.GetComponent<Knight>().BoardPosition = new Vector2Int(3, 4);
-        enemyToken.GetComponent <Knight>().Team = 2;
     }
     // Update is called once per frame
     void Update()
