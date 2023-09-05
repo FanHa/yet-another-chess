@@ -4,15 +4,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Knight : MonoBehaviour
+public class Token : MonoBehaviour
 {
     public Vector2Int BoardPosition = Vector2Int.zero;
-    public readonly string Class = "Cavalry";
-    public readonly string Info = " High speed\n Medium attack\n Medium defense";
+    public string Class = "Base Token";
+    public string Info = " Low speed\n Low attack\n Low defense";
     public TextMeshProUGUI TokenNameText;
     public GameObject ChoosonRing;
     [SerializeField] private int _mobility = 5;
     private int _team;
+
     public int Team
     {
         get => _team;
@@ -20,14 +21,15 @@ public class Knight : MonoBehaviour
         {
             _team = value;
             Renderer renderer = GetComponent<Renderer>();
-            if ( value == 1) 
+            if (value == 1)
             {
                 renderer.material.color = Color.blue;
-            } else
+            }
+            else
             {
                 renderer.material.color = Color.red;
             }
-            
+
         }
     }
 
@@ -45,11 +47,10 @@ public class Knight : MonoBehaviour
 
     public GameObject HealthBarUI;
     public Slider Slider;
-
-
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        Debug.Log("Base Start");
         CurrentHealth = MaxHealth;
         Slider.value = CalculateHealth();
     }
@@ -73,9 +74,9 @@ public class Knight : MonoBehaviour
     }
 
 
-    public bool CanAttackTo(Knight target)
+    public bool CanAttackTo(Token target)
     {
-        
+
         return true;
     }
 
@@ -118,6 +119,4 @@ public class Knight : MonoBehaviour
     {
         return CurrentHealth / MaxHealth;
     }
-
-
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4514073480636069392}
   - component: {fileID: 8157214909279693105}
   m_Layer: 0
-  m_Name: Token Prefab
+  m_Name: Cavalry Prefab
   m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 3182595423063545759}
   - {fileID: 1709515938898255235}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3526985026059082692
 MeshFilter:
@@ -121,11 +121,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoardPosition: {x: 0, y: 0}
+  Class: Cavalry
+  Info: " HIgh speed\n Midium attack\n Midium defense"
   TokenNameText: {fileID: 2882328660444989640}
   ChoosonRing: {fileID: 3187628399446072363}
   _mobility: 5
-  CurrentHealth: 100
-  MaxHealth: 100
+  CurrentHealth: 200
+  MaxHealth: 200
   HealthBarUI: {fileID: 2674714938639530543}
   Slider: {fileID: 8280230006853105648}
 --- !u!1 &902220081500534400

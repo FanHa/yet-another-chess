@@ -1986,6 +1986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChessBoard: {fileID: 2142228887}
   CavalryPrefab: {fileID: 784133886136189555, guid: aa49dfc62105efe4ba723ecd260268c9, type: 3}
+  InfantryPrefab: {fileID: 784133886136189555, guid: 83c6f4d289b9b18409abf087bfd1c858, type: 3}
 --- !u!4 &2011231785
 Transform:
   m_ObjectHideFlags: 0

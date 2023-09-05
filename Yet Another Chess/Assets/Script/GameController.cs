@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public GameObject ChessBoard;
     public static GameObject UserController;
     public GameObject CavalryPrefab;
+    public GameObject InfantryPrefab;
     private static Queue<string> _turns = new Queue<string>();
     // Start is called before the first frame update
     void Start()
@@ -16,21 +17,21 @@ public class GameController : MonoBehaviour
         ChessBoard.GetComponent<BoardManager>().DrawChessBoard();
         for (int i=0; i<5; i++)
         {
-            var controlToken = Instantiate(CavalryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(1, i+2)), CavalryPrefab.transform.rotation);
+            var controlToken = Instantiate(InfantryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(1, i+2)), InfantryPrefab.transform.rotation);
             var tokenName = "User Token " + i;
-            controlToken.GetComponent<Knight>().Name = tokenName;
-            controlToken.GetComponent<Knight>().BoardPosition = new Vector2Int(1, i+2);
-            controlToken.GetComponent<Knight>().Team = 1;
+            controlToken.GetComponent<Token>().Name = tokenName;
+            controlToken.GetComponent<Token>().BoardPosition = new Vector2Int(1, i+2);
+            controlToken.GetComponent<Token>().Team = 1;
             _turns.Enqueue(tokenName);
         }
         
 
 
-        var enemyToken = Instantiate(CavalryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(4, 6)), CavalryPrefab.transform.rotation);
+        var enemyToken = Instantiate(InfantryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(4, 6)), InfantryPrefab.transform.rotation);
         var enemyTokenName = "Enemy Token 0";
-        enemyToken.GetComponent<Knight>().Name = enemyTokenName;
-        enemyToken.GetComponent<Knight>().BoardPosition = new Vector2Int(4, 6);
-        enemyToken.GetComponent<Knight>().Team = 2;
+        enemyToken.GetComponent<Token>().Name = enemyTokenName;
+        enemyToken.GetComponent<Token>().BoardPosition = new Vector2Int(4, 6);
+        enemyToken.GetComponent<Token>().Team = 2;
         _turns.Enqueue(enemyTokenName);
 
         var currentTurn = _turns.Dequeue();

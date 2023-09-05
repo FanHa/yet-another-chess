@@ -11,11 +11,11 @@ public class UserController : MonoBehaviour
     public GameObject TokenInfoPanel;
     public GameObject ActionUI;
 
-    private Knight _currentToken;
+    private Token _currentToken;
     private float cameraMoveSpeed = 80f;
 
     [SerializeField] private List<BoardUnit> _movableUnits;
-    [SerializeField] private List<Knight> _attackableTokens; 
+    [SerializeField] private List<Token> _attackableTokens; 
     public ActionPhase Phase;
 
     public enum ActionPhase
@@ -52,7 +52,7 @@ public class UserController : MonoBehaviour
                     {
                         if (Phase == ActionPhase.Attacking)
                         {
-                            var token = hit.collider.GetComponentInParent<Knight>();
+                            var token = hit.collider.GetComponentInParent<Token>();
                             if (_currentToken.CanAttackTo(token))
                             {
                                 token.AddHP(-25);
@@ -91,7 +91,7 @@ public class UserController : MonoBehaviour
     public void SetCurrentControlToken(string name)
     {
         var ob = GameObject.Find(name);
-        _currentToken = ob.GetComponent<Knight>();
+        _currentToken = ob.GetComponent<Token>();
         TokenInfoPanel.GetComponent<TokenInfo>().SetName(_currentToken.Class);
         TokenInfoPanel.GetComponent<TokenInfo>().SetInfo(_currentToken.Info);
         _currentToken.ChoosonRing.SetActive(true);
@@ -141,13 +141,13 @@ public class UserController : MonoBehaviour
         return list;
     }
 
-    List<Knight> GetAttackableTokens()
+    List<Token> GetAttackableTokens()
     {
-        var list = new List<Knight>();
+        var list = new List<Token>();
         var tokens = GameObject.FindGameObjectsWithTag("Token");
         for (int i = 0; i<tokens.Length; i++)
         {
-            var token = tokens[i].GetComponent<Knight>();
+            var token = tokens[i].GetComponent<Token>();
             if (_currentToken.CanAttackTo(token))
             {
                 list.Add(token);
