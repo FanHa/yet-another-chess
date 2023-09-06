@@ -50,7 +50,6 @@ public class Token : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        Debug.Log("Base Start");
         CurrentHealth = MaxHealth;
         Slider.value = CalculateHealth();
     }
@@ -74,17 +73,19 @@ public class Token : MonoBehaviour
     }
 
 
-    public bool CanAttackTo(Token target)
+    public virtual bool CanAttackTo(Token target)
     {
-
-        return true;
+        var currentQrsPosition = GetDistance(BoardPosition, target.BoardPosition);
+        if (currentQrsPosition < 2)
+        {
+            return true;
+        }
+        return false;
     }
 
     public bool CanMoveTo(BoardUnit boardUnit)
     {
         var distance = GetDistance(boardUnit.XYZCoordinate, new Vector3Int(BoardPosition.x, BoardPosition.y, 0 - BoardPosition.x - BoardPosition.y));
-        Debug.Log(distance);
-        Debug.Log(boardUnit.XYCoordinate);
         if (distance <= _mobility)
         {
             return true;
@@ -106,13 +107,20 @@ public class Token : MonoBehaviour
         // todo
     }
 
-    int GetDistance(Vector3Int qrsA, Vector3Int qrsB)
+    protected int GetDistance(Vector3Int qrsA, Vector3Int qrsB)
     {
         int dQ = Mathf.Abs(qrsB.x - qrsA.x);
         int dR = Mathf.Abs(qrsB.y - qrsA.y);
         int dS = Mathf.Abs(qrsB.z - qrsA.z);
 
         return Mathf.Max(dQ, dR, dS);
+    }
+
+    protected int GetDistance(Vector2Int positionA, Vector2Int positionB)
+    {
+        var qrsA = new Vector3Int(positionA.x, positionA.y, 0-positionA.x-positionA.y);
+        var qrsB = new Vector3Int(positionB.x, positionB.y, 0-positionB.x-positionB.y);
+        return GetDistance(qrsA, qrsB);
     }
 
     float CalculateHealth()

@@ -126,8 +126,8 @@ MonoBehaviour:
   TokenNameText: {fileID: 2882328660444989640}
   ChoosonRing: {fileID: 3187628399446072363}
   _mobility: 5
-  CurrentHealth: 200
-  MaxHealth: 200
+  CurrentHealth: 150
+  MaxHealth: 150
   HealthBarUI: {fileID: 2674714938639530543}
   Slider: {fileID: 8280230006853105648}
 --- !u!1 &902220081500534400
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 2
+  m_fontSizeBase: 2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

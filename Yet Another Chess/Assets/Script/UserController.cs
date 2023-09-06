@@ -56,6 +56,9 @@ public class UserController : MonoBehaviour
                             if (_currentToken.CanAttackTo(token))
                             {
                                 token.AddHP(-25);
+                            } else
+                            {
+                                Debug.Log("cant attack to this token");
                             }
                         }
                         

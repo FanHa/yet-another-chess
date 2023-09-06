@@ -9,22 +9,35 @@ public class GameController : MonoBehaviour
     public static GameObject UserController;
     public GameObject CavalryPrefab;
     public GameObject InfantryPrefab;
+    public GameObject ArcherPrefab;
     private static Queue<string> _turns = new Queue<string>();
     // Start is called before the first frame update
     void Start()
     {
         UserController = GameObject.Find("User Controller");
         ChessBoard.GetComponent<BoardManager>().DrawChessBoard();
-        for (int i=0; i<5; i++)
-        {
-            var controlToken = Instantiate(InfantryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(1, i+2)), InfantryPrefab.transform.rotation);
-            var tokenName = "User Token " + i;
-            controlToken.GetComponent<Token>().Name = tokenName;
-            controlToken.GetComponent<Token>().BoardPosition = new Vector2Int(1, i+2);
-            controlToken.GetComponent<Token>().Team = 1;
-            _turns.Enqueue(tokenName);
-        }
-        
+
+        var controlInfantryToken = Instantiate(InfantryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(1, 0+2)), InfantryPrefab.transform.rotation);
+        var infantryTokenName = "User Infantry " + 0;
+        controlInfantryToken.GetComponent<Token>().Name = infantryTokenName;
+        controlInfantryToken.GetComponent<Token>().BoardPosition = new Vector2Int(1, 0+2);
+        controlInfantryToken.GetComponent<Token>().Team = 1;
+        _turns.Enqueue(infantryTokenName);
+
+        var controlCavalryToken = Instantiate(CavalryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(1, 1 + 2)), CavalryPrefab.transform.rotation);
+        var cavalryTokenName = "User Cavalry " + 1;
+        controlCavalryToken.GetComponent<Token>().Name = cavalryTokenName;
+        controlCavalryToken.GetComponent<Token>().BoardPosition = new Vector2Int(1, 0 + 1);
+        controlCavalryToken.GetComponent<Token>().Team = 1;
+        _turns.Enqueue(cavalryTokenName);
+
+        var controlArcherToken = Instantiate(ArcherPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(1, 2 + 2)), ArcherPrefab.transform.rotation);
+        var archerTokenName = "User Archer " + 2;
+        controlArcherToken.GetComponent<Token>().Name = archerTokenName;
+        controlArcherToken.GetComponent<Token>().BoardPosition = new Vector2Int(1, 2 + 2);
+        controlArcherToken.GetComponent<Token>().Team = 1;
+        _turns.Enqueue(archerTokenName);
+
 
 
         var enemyToken = Instantiate(InfantryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(4, 6)), InfantryPrefab.transform.rotation);

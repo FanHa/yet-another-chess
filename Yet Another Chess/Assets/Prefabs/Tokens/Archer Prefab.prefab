@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3526985026059082692}
   - component: {fileID: 7448205714465071153}
   - component: {fileID: 4514073480636069392}
-  - component: {fileID: -4159526285101518468}
+  - component: {fileID: 1742134052530691392}
   m_Layer: 0
-  m_Name: Infantry Prefab
+  m_Name: Archer Prefab
   m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4159526285101518468
+--- !u!114 &1742134052530691392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,17 +117,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 784133886136189555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d782002d4a3b0ed48ab07515bc2cbe60, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a7c4afbe576d1c47a7deb5264080b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BoardPosition: {x: 0, y: 0}
-  Class: Infantry
-  Info: " Low speed\n Midium attack\n Midium defense"
+  Class: Archer
+  Info: " Low speed\n Midium attack\n Low defense"
   TokenNameText: {fileID: 2882328660444989640}
   ChoosonRing: {fileID: 3187628399446072363}
   _mobility: 2
-  CurrentHealth: 300
-  MaxHealth: 300
+  CurrentHealth: 80
+  MaxHealth: 80
   HealthBarUI: {fileID: 2674714938639530543}
   Slider: {fileID: 8280230006853105648}
 --- !u!1 &902220081500534400
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294584070
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
