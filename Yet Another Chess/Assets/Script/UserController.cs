@@ -4,6 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class UserController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class UserController : MonoBehaviour
     public GameObject ActionUI;
 
     private Token _currentToken;
-    private float cameraMoveSpeed = 80f;
+
 
     [SerializeField] private List<BoardUnit> _movableUnits;
     [SerializeField] private List<Token> _attackableTokens; 
@@ -34,11 +35,6 @@ public class UserController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float vercicalInput = Input.GetAxis("Vertical");
-
-        GameCamera.transform.position = GameCamera.transform.position + GameCamera.transform.forward * cameraMoveSpeed * Time.deltaTime * vercicalInput;
-        GameCamera.transform.position = GameCamera.transform.position + GameCamera.transform.right * cameraMoveSpeed * Time.deltaTime * horizontalInput;
 
         if (Input.GetMouseButtonDown(0))
         {
