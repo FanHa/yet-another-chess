@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         var controlCavalryToken = Instantiate(CavalryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(1, 1 + 2)), CavalryPrefab.transform.rotation);
         var cavalryTokenName = "User Cavalry " + 1;
         controlCavalryToken.GetComponent<Token>().Name = cavalryTokenName;
-        controlCavalryToken.GetComponent<Token>().BoardPosition = new Vector2Int(1, 0 + 1);
+        controlCavalryToken.GetComponent<Token>().BoardPosition = new Vector2Int(1, 1 + 2);
         controlCavalryToken.GetComponent<Token>().Team = 1;
         _turns.Enqueue(cavalryTokenName);
 

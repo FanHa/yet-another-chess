@@ -21,7 +21,7 @@ public class BoardManager : MonoBehaviour
 
     public static Vector3 GetRealPositionByCoordinate(Vector2 coordinate)
     {
-        return new Vector3(coordinate.x * unitWidth, 3, coordinate.y * unitWidth + yOffset * coordinate.x);
+        return new Vector3(coordinate.x * unitWidth, 6, coordinate.y * unitWidth + yOffset * coordinate.x);
     }
 
     public void DrawChessBoard()

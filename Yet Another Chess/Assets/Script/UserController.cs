@@ -87,6 +87,10 @@ public class UserController : MonoBehaviour
         }
     }
 
+    void OnClick()
+    {
+         
+    }
     public void SetCurrentControlToken(string name)
     {
         var ob = GameObject.Find(name);
@@ -132,6 +136,8 @@ public class UserController : MonoBehaviour
             var boardUnit = units[i].GetComponent<BoardUnit>();
             if (_currentToken.CanMoveTo(boardUnit))
             {
+                Debug.Log(boardUnit.ToString());
+
                 list.Add(boardUnit);
             }
             
