@@ -44,6 +44,7 @@ public class Token : MonoBehaviour
     }
     public float CurrentHealth;
     public float MaxHealth;
+    public Sprite icon;
 
     public GameObject HealthBarUI;
     public Slider Slider;

@@ -128,6 +128,7 @@ MonoBehaviour:
   _mobility: 5
   CurrentHealth: 100
   MaxHealth: 100
+  icon: {fileID: 21300000, guid: 513d334ef78544f129afabc1ad5af28b, type: 3}
   HealthBarUI: {fileID: 2674714938639530543}
   Slider: {fileID: 8280230006853105648}
 --- !u!1 &902220081500534400
