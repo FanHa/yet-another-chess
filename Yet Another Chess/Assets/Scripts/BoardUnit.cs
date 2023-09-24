@@ -35,4 +35,10 @@ public class BoardUnit : MonoBehaviour
     {
         return _movable;
     }
+
+    public bool Placeable()
+    {
+        // todo 
+        return true;
+    }
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Board Unit
   - Token
+  - Powerup
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - PlacementGhost
   - 
   - 
   - 

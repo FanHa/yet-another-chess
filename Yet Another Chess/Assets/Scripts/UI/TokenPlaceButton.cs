@@ -10,7 +10,7 @@ public class TokenPlaceButton : MonoBehaviour, IDragHandler
 {
     public TextMeshProUGUI buttonText;
     public Image tokenIcon;
-    Token m_token;
+    Token m_Token;
     public event Action<Token> buttonTapped;
     public event Action<Token> draggedOff;
     // Start is called before the first frame update
@@ -30,10 +30,18 @@ public class TokenPlaceButton : MonoBehaviour, IDragHandler
 
     }
 
+    public void OnClick()
+    {
+        if (buttonTapped != null)
+        {
+            buttonTapped(m_Token);
+        }
+    }
+
     public void InitializeButton(Token tokenData) {
-        m_token = tokenData;
-        buttonText.text = m_token.Name;
-        tokenIcon.sprite = m_token.icon;
+        m_Token = tokenData;
+        buttonText.text = m_Token.Name;
+        tokenIcon.sprite = m_Token.icon;
         UpdateButton();
     }
 

@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7c4afbe576d1c47a7deb5264080b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tokenGhostPrefab: {fileID: 0}
   BoardPosition: {x: 0, y: 0}
   Class: Archer
   Info: " Low speed\n Midium attack\n Low defense"

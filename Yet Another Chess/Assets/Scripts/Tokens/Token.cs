@@ -6,6 +6,23 @@ using UnityEngine.UI;
 
 public class Token : MonoBehaviour
 {
+    Affector[] m_Affectors;
+
+    /// <summary>
+    /// Gets the list of effects attached to the tower
+    /// </summary>
+    protected Affector[] Affectors
+    {
+        get
+        {
+            if (m_Affectors == null)
+            {
+                m_Affectors = GetComponentsInChildren<Affector>();
+            }
+            return m_Affectors;
+        }
+    }
+    public TokenPlacementGhost tokenGhostPrefab;
     public Vector2Int BoardPosition = Vector2Int.zero;
     public string Class = "Base Token";
     public string Info = " Low speed\n Low attack\n Low defense";
@@ -127,5 +144,19 @@ public class Token : MonoBehaviour
     float CalculateHealth()
     {
         return CurrentHealth / MaxHealth;
+    }
+
+    public List<ITokenRadiusProvider> GetRadiusVisualizers()
+    {
+        List<ITokenRadiusProvider> visualizers = new List<ITokenRadiusProvider>();
+        foreach (Affector affector in Affectors)
+        {
+            var visualizer = affector as ITokenRadiusProvider;
+            if (visualizer != null)
+            {
+                visualizers.Add(visualizer);
+            }
+        }
+        return visualizers;
     }
 }

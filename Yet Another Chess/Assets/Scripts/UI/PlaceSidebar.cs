@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildSidebar : MonoBehaviour
+public class PlaceSidebar : MonoBehaviour
 {
     public TokenPlaceButton tokenPlaceButton;
-    // Start is called before the first frame update
+
     void Start()
     {
         foreach (Token token in LevelManager.instance.tokenLibrary)
@@ -25,7 +25,12 @@ public class BuildSidebar : MonoBehaviour
 
     void OnButtonTapped(Token tokenData)
     {
-
+        var gameUI = GameUI.instance;
+        if (gameUI.isPlacing)
+        {
+            gameUI.CancelTokenPlacement();
+        }
+        gameUI.SetToPlaceMode(tokenData);
     }
 
     void OnButtonDraggedOff(Token tokenData)
