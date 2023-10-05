@@ -53,13 +53,13 @@ public class PlaceInfoUI : MonoBehaviour
 
     public virtual void Hide()
     {
-        if (m_State == AnimationState.Hidden)
-        {
-            return;
-        }
-        m_TokenUI.Hide();
-        anim.Play(hideClipName);
-        m_State = anim[hideClipName].normalizedTime < 1 ? AnimationState.Hiding :
-            AnimationState.Hidden;
+        //if (m_State == AnimationState.Hidden)
+        //{
+        //    return;
+        //}
+        //m_TokenUI.Hide();
+        //anim.Play(hideClipName);
+        //m_State = anim[hideClipName].normalizedTime < 1 ? AnimationState.Hiding :
+        //    AnimationState.Hidden;
     }
 }

@@ -15,6 +15,13 @@ public class TokenPlacementGhost : MonoBehaviour
     protected bool m_ValidPos;
     protected Vector3 m_TargetPosition;
 
+    /// <summary>
+    /// The two materials used to represent valid and invalid placement, respectively
+    /// </summary>
+    public Material material;
+
+    public Material invalidPositionMaterial;
+
 
 
     protected virtual void Update()
@@ -43,6 +50,43 @@ public class TokenPlacementGhost : MonoBehaviour
         ghostCollider = GetComponent<Collider>();
         m_MoveVel = Vector3.zero;
         m_ValidPos = false;
+    }
+
+    public virtual void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Show this ghost
+    /// </summary>
+    public virtual void Show()
+    {
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+            m_MoveVel = Vector3.zero;
+
+            m_ValidPos = false;
+        }
+    }
+
+    public virtual void Move(Vector3 worldPosition, Quaternion rotation, bool validLocation)
+    {
+        m_TargetPosition = worldPosition;
+
+        if (!m_ValidPos)
+        {
+            // Immediately move to the given position
+            m_ValidPos = true;
+            transform.position = m_TargetPosition;
+        }
+
+        transform.rotation = rotation;
+        foreach (MeshRenderer meshRenderer in m_MeshRenderers)
+        {
+            meshRenderer.sharedMaterial = validLocation ? material : invalidPositionMaterial;
+        }
     }
 
 

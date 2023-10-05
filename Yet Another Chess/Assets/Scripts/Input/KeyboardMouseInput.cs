@@ -41,7 +41,7 @@ public class KeyboardMouseInput : Core.Input.KeyboardMouseInput
         // We only respond to mouse info
         var mouseInfo = pointer as MouseCursorInfo;
 
-        if ((mouseInfo != null) && (m_GameUI.isBuilding))
+        if ((mouseInfo != null) && (m_GameUI.isPlacing))
         {
             m_GameUI.TryMoveGhost(pointer, false);
         }
@@ -58,21 +58,21 @@ public class KeyboardMouseInput : Core.Input.KeyboardMouseInput
             {
                 if (mouseInfo.mouseButtonId == 0) // LMB confirms
                 {
-                    m_GameUI.TryPlaceTower(pointer);
+                    m_GameUI.TryPlaceToken(pointer);
                 }
                 else // RMB cancels
                 {
                     m_GameUI.CancelGhostPlacement();
                 }
             }
-            else
-            {
-                if (mouseInfo.mouseButtonId == 0)
-                {
-                    // select towers
-                    m_GameUI.TrySelectTower(pointer);
-                }
-            }
+            //else
+            //{
+            //    if (mouseInfo.mouseButtonId == 0)
+            //    {
+            //        // select towers
+            //        m_GameUI.TrySelectTower(pointer);
+            //    }
+            //}
         }
     }
 }
