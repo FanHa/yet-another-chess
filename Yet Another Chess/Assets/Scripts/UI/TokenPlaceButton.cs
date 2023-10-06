@@ -11,6 +11,7 @@ public class TokenPlaceButton : MonoBehaviour, IDragHandler
 {
     public TextMeshProUGUI buttonText;
     public Image tokenIcon;
+    public Button button;
     Token m_Token;
     public event Action<Token> buttonTapped;
     public event Action<Token> draggedOff;
@@ -48,6 +49,6 @@ public class TokenPlaceButton : MonoBehaviour, IDragHandler
 
     void UpdateButton()
     {
-
+        
     }
 }
