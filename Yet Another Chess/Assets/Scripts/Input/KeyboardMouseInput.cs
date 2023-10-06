@@ -69,7 +69,7 @@ public class KeyboardMouseInput : Core.Input.KeyboardMouseInput
             //{
             //    if (mouseInfo.mouseButtonId == 0)
             //    {
-            //        // select towers
+            //        // select token
             //        m_GameUI.TrySelectTower(pointer);
             //    }
             //}

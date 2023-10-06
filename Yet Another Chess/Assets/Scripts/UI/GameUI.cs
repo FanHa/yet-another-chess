@@ -98,6 +98,26 @@ public class GameUI : Singleton<GameUI>
         PlaceToken(pointer);
     }
 
+    public void TrySelectToken(PointerInfo info)
+    {
+        //if (state != State.Normal)
+        //{
+        //    throw new InvalidOperationException("Trying to select towers outside of Normal state");
+        //}
+        //UIPointer uiPointer = WrapPointer(info);
+        //RaycastHit output;
+        //bool hasHit = Physics.Raycast(uiPointer.ray, out output, float.MaxValue, SelectionLayer);
+        //if (!hasHit || uiPointer.overUI)
+        //{
+        //    return;
+        //}
+        //var controller = output.collider.GetComponent<Token>();
+        //if (controller != null)
+        //{
+        //    SelectTower(controller);
+        //}
+    }
+
     protected UIPointer WrapPointer(PointerInfo pointerInfo)
     {
         return new UIPointer

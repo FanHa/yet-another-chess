@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(RectTransform))]
 public class TokenPlaceButton : MonoBehaviour, IDragHandler
 {
     public TextMeshProUGUI buttonText;
