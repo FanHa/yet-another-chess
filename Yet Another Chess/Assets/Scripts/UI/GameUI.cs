@@ -32,6 +32,9 @@ public struct UIPointer
 [RequireComponent(typeof(Camera))]
 public class GameUI : Singleton<GameUI>
 {
+    /// <summary>
+    /// Component that manages the radius visualizers of ghosts and tokens
+    /// </summary>
     public RadiusVisualizerController radiusVisualizerController;
     public event Action<State, State> stateChanged;
     public event Action ghostBecameValid;
@@ -81,6 +84,9 @@ public class GameUI : Singleton<GameUI>
     }
 
 
+    /// <summary>
+    /// Sets up the radius visualizer for a token or ghost token
+    /// </summary>
     public void SetupRadiusVisualizer(Token token, Transform ghost = null)
     {
         radiusVisualizerController.SetupRadiusVisualizers(token, ghost);
@@ -194,21 +200,21 @@ public class GameUI : Singleton<GameUI>
 
     }
 
-    void SetUpToken([NotNull] Token tokenToBuild)
+    void SetUpToken([NotNull] Token tokenToPlace)
     {
-        if (tokenToBuild == null)
+        if (tokenToPlace == null)
         {
             throw new ArgumentNullException("TokenToBuild");
         }
 
-        m_CurrentToken = Instantiate(tokenToBuild.tokenGhostPrefab);
-        m_CurrentToken.Initialize(tokenToBuild);
+        m_CurrentToken = Instantiate(tokenToPlace.tokenGhostPrefab);
+        m_CurrentToken.Initialize(tokenToPlace);
         //m_CurrentToken.Hide();
 
         //activate build info
         if (placeInfoUI != null)
         {
-            placeInfoUI.Show(tokenToBuild);
+            placeInfoUI.Show(tokenToPlace);
         }
     }
 

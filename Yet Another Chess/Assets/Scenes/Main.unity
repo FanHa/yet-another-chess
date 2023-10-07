@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 192313444}
   - component: {fileID: 192313445}
   m_Layer: 0
-  m_Name: Radius Visualiser
+  m_Name: RadiusVisualiser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
