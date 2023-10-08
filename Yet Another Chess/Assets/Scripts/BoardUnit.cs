@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public class BoardUnit : MonoBehaviour
+public class BoardUnit : MonoBehaviour, IPlacementBoardUnit
 {
     public Vector2Int XYCoordinate;
     public Vector3Int XYZCoordinate;
@@ -41,4 +42,11 @@ public class BoardUnit : MonoBehaviour
         // todo 
         return true;
     }
+
+    public  Vector3 GridToWorld()
+    {
+        return transform.position;
+    }
+
+
 }

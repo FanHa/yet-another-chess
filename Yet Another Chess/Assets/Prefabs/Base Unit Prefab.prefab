@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7199356113448239772}
   - component: {fileID: 7597873278577396511}
   - component: {fileID: 9069803365680926260}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Base Unit Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1700446666831782910
 MeshFilter:

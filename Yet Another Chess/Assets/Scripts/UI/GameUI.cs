@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Core.Input;
 using UnityEngine.EventSystems;
+using Core.Utilities;
 
 public struct UIPointer
 {
@@ -366,6 +367,7 @@ public class GameUI : Singleton<GameUI>
             Debug.LogError("There is not an IPlacementBoardUnit attached to the collider found on the m_PlacementAreaMask");
             return;
         }
+        //m_GridPosition = new IntVector2(0, 0);
         //m_GridPosition = m_CurrentBoardUnit.WorldToGrid(raycast.point, m_CurrentToken.controller.dimensions);
         //TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
 

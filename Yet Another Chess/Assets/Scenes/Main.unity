@@ -1602,10 +1602,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f16c0eb37003541836680ddebd4a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusVisualizerController: {fileID: 0}
+  radiusVisualizerController: {fileID: 192313445}
   placementBoardUnitMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   sphereCastRadius: 1
   placeInfoUI: {fileID: 0}
 --- !u!1 &1119370830
