@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,11 @@ public class Token : MonoBehaviour
     public string Info = " Low speed\n Low attack\n Low defense";
     public TextMeshProUGUI TokenNameText;
     public GameObject ChoosonRing;
+
+    /// <summary>
+    /// The placement area we've been built on
+    /// </summary>
+    public IPlacementBoardUnit placementBoardUnit { get; private set; }
     [SerializeField] private int _mobility = 5;
     private int _team;
 
@@ -123,6 +129,24 @@ public class Token : MonoBehaviour
     public void SetAttackTargetable(bool attackable)
     {
         // todo
+    }
+
+    /// <summary>
+    /// Provide the tower with data to initialize with
+    /// </summary>
+    /// <param name="targetArea">The placement area configuration</param>
+    /// <param name="destination">The destination position</param>
+    public virtual void Initialize(IPlacementBoardUnit targetArea)
+    {
+        placementBoardUnit = targetArea;
+
+        if (targetArea != null)
+        {
+            transform.position = placementBoardUnit.transform.position;
+            transform.rotation = placementBoardUnit.transform.rotation;
+            targetArea.Occupy();
+        }
+
     }
 
     protected int GetDistance(Vector3Int qrsA, Vector3Int qrsB)

@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2019402d3e7ff5a4abf0999b6953d32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tokenGhostPrefab: {fileID: 0}
   BoardPosition: {x: 0, y: 0}
   Class: Cavalry
   Info: " HIgh speed\n Midium attack\n Midium defense"
@@ -128,7 +129,7 @@ MonoBehaviour:
   _mobility: 5
   CurrentHealth: 150
   MaxHealth: 150
-  icon: {fileID: 21300000, guid: 3631244dc04164d079a3302a39dbc0c6, type: 3}
+  icon: {fileID: 21300000, guid: 7ab402937a918d849bbe9db72c3e2120, type: 3}
   HealthBarUI: {fileID: 2674714938639530543}
   Slider: {fileID: 8280230006853105648}
 --- !u!1 &902220081500534400

@@ -8,6 +8,7 @@ public class BoardUnit : MonoBehaviour, IPlacementBoardUnit
     public Vector2Int XYCoordinate;
     public Vector3Int XYZCoordinate;
     private bool _movable;
+    private bool _occupied;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +47,11 @@ public class BoardUnit : MonoBehaviour, IPlacementBoardUnit
     public  Vector3 GridToWorld()
     {
         return transform.position;
+    }
+
+    public void Occupy()
+    {
+        _occupied = true;
     }
 
 

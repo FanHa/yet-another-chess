@@ -30,12 +30,14 @@ public interface IPlacementBoardUnit
     ///// <returns>True if the item would fit at <paramref name="gridPos"/></returns>
     //TowerFitStatus Fits(IntVector2 gridPos, IntVector2 size);
 
-    ///// <summary>
-    ///// Occupy the given space on this placement area
-    ///// </summary>
-    ///// <param name="gridPos">The grid location</param>
-    ///// <param name="size">The size of the item</param>
+    /// <summary>
+    /// Occupy the given space on this placement area
+    /// </summary>
+    /// <param name="gridPos">The grid location</param>
+    /// <param name="size">The size of the item</param>
     //void Occupy(IntVector2 gridPos, IntVector2 size);
+    void Occupy();
+
 
     ///// <summary>
     ///// Clear the given space on this placement area

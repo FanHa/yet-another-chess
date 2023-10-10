@@ -282,7 +282,7 @@ public class GameUI : Singleton<GameUI>
                 Token controller = m_CurrentToken.controller;
 
                 Token createdToken = Instantiate(controller);
-                //createdToken.Initialize(m_CurrentArea, m_GridPosition);
+                createdToken.Initialize(m_CurrentBoardUnit);
 
                 CancelGhostPlacement();
             }
