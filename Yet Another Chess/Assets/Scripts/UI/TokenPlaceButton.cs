@@ -43,7 +43,7 @@ public class TokenPlaceButton : MonoBehaviour, IDragHandler
     public void InitializeButton(Token tokenData) {
         m_Token = tokenData;
         buttonText.text = m_Token.Name;
-        tokenIcon.sprite = m_Token.icon;
+        //tokenIcon.sprite = m_Token.icon;
         UpdateButton();
     }
 
