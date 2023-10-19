@@ -142,7 +142,8 @@ public class Token : MonoBehaviour
 
         if (targetArea != null)
         {
-            transform.position = placementBoardUnit.transform.position;
+            BoardPosition = targetArea.GetXYCoordinate();
+            transform.position = placementBoardUnit.transform.position + new Vector3(0,5,0);
             transform.rotation = placementBoardUnit.transform.rotation;
             targetArea.Occupy();
         }

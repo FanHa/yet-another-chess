@@ -54,5 +54,9 @@ public class BoardUnit : MonoBehaviour, IPlacementBoardUnit
         _occupied = true;
     }
 
+    public Vector2Int GetXYCoordinate()
+    {
+        return XYCoordinate;
+    }
 
 }

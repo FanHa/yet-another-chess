@@ -45,6 +45,8 @@ public interface IPlacementBoardUnit
     ///// <param name="gridPos">The grid location</param>
     ///// <param name="size">The size of the item</param>
     //void Clear(IntVector2 gridPos, IntVector2 size);
+
+    Vector2Int GetXYCoordinate();
 }
 
 //public static class PlacementBoardUnitExtensions
