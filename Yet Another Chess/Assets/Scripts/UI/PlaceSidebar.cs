@@ -6,14 +6,20 @@ public class PlaceSidebar : MonoBehaviour
 {
     public TokenPlaceButton tokenPlaceButton;
 
+    Storehouse m_Storehouse;
+
     void Start()
     {
+        m_Storehouse = Storehouse.instance;
+
+
         foreach (Token token in LevelManager.instance.tokenLibrary)
         {
             TokenPlaceButton button = Instantiate(tokenPlaceButton, transform);
             button.InitializeButton(token);
             button.buttonTapped += OnButtonTapped;
             button.draggedOff += OnButtonDraggedOff;
+            m_Storehouse.IncreaseInventory(token.Class, 1);
         }
     }
 

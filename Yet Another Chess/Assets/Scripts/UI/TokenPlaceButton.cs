@@ -15,6 +15,10 @@ public class TokenPlaceButton : MonoBehaviour, IDragHandler
     Token m_Token;
     public event Action<Token> buttonTapped;
     public event Action<Token> draggedOff;
+
+    // Token²Ö¿â
+    Storehouse m_Storehouse;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,12 +47,24 @@ public class TokenPlaceButton : MonoBehaviour, IDragHandler
     public void InitializeButton(Token tokenData) {
         m_Token = tokenData;
         buttonText.text = m_Token.Class;
+        m_Storehouse = Storehouse.instance;
+        m_Storehouse.StockChanged += UpdateButton;
         //tokenIcon.sprite = m_Token.icon;
         UpdateButton();
     }
 
     void UpdateButton()
     {
-        
+        if (m_Storehouse == null)
+        {
+            return;
+        }
+        if (m_Storehouse.GetInventory(m_Token.Class)>0)
+        {
+            button.interactable = true;
+        } else
+        {
+            button.interactable = false;
+        }
     }
 }

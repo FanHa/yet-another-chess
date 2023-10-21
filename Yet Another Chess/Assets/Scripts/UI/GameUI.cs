@@ -51,6 +51,7 @@ public class GameUI : Singleton<GameUI>
     TokenPlacementGhost m_CurrentToken;
     Camera m_Camera;
     public PlaceInfoUI placeInfoUI;
+    Storehouse m_Storehouse;
 
 
     IPlacementBoardUnit m_CurrentBoardUnit;
@@ -82,6 +83,7 @@ public class GameUI : Singleton<GameUI>
 
         state = State.Normal;
         m_Camera = GetComponent<Camera>();
+        m_Storehouse = Storehouse.instance;
     }
 
 
@@ -224,6 +226,7 @@ public class GameUI : Singleton<GameUI>
         state = newState;
     }
 
+    
     public void PlaceToken(UIPointer pointer)
     {
         if (!isPlacing)
@@ -280,10 +283,11 @@ public class GameUI : Singleton<GameUI>
             {
                 // Place the ghost
                 Token controller = m_CurrentToken.controller;
+                //var controlInfantryToken = Instantiate(InfantryPrefab, BoardManager.GetRealPositionByCoordinate(new Vector2(1, 0 + 2)), InfantryPrefab.transform.rotation);
 
                 Token createdToken = Instantiate(controller);
                 createdToken.Initialize(m_CurrentBoardUnit);
-
+                m_Storehouse.TryDecreaseInventory(createdToken.Class, 1);
                 CancelGhostPlacement();
             }
         }
